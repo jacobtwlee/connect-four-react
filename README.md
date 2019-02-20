@@ -2,7 +2,9 @@
 
 A React implementation of Connect Four.
 
-# Running Locally
+Demo: http://jacobtwlee.github.io/connect-four-react
+
+## Running Locally
 
 ```
 # Install dependencies
