@@ -33,12 +33,24 @@ export const ConnectFour = () => {
     setWinningCells(null)
   }
 
+  const isGameOver = () => {
+    // game has winner
+    if (winningCells != null) {
+      return true
+    }
+
+    // game is a tie
+    return tokens.every(tokenColumn => {
+      return tokenColumn.length === BOARD_ROWS
+    })
+  }
+
   return (
     <div>
       <Dropzone
         currentPlayer={currentPlayer}
         onClickColumn={dropToken}
-        isDisabled={winningCells != null}
+        isDisabled={isGameOver()}
       />
       <Board
         tokens={tokens}
