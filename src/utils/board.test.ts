@@ -1,4 +1,4 @@
-import { findWinningCells } from './utils'
+import { findWinningCells } from './board'
 
 describe('findWinningCells', () => {
   it('should find no cells in an empty board', () => {
