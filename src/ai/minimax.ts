@@ -20,19 +20,36 @@ function nextMove(board: Player[][], player: Player): number {
   return bestMove
 }
 
-function minimax(board: Player[][], player: Player, isMaxPlayer: boolean, depth: number = 5): number {
+function minimax(
+  board: Player[][],
+  player: Player,
+  isMaxPlayer: boolean,
+  depth: number = 5,
+  alpha: number = Number.MIN_SAFE_INTEGER,
+  beta: number = Number.MAX_SAFE_INTEGER,
+): number {
   if (isFullBoard(board) || isWinningBoard(board) || depth < 1) {
     return evaluate(board, player, isMaxPlayer)
   }
 
   let bestScore = isMaxPlayer ? Number.MIN_SAFE_INTEGER : Number.MAX_SAFE_INTEGER
 
-  validBoardMoves(board).forEach(col => {
-    const nextBoard = copyBoard(board)
+  for (let col of validBoardMoves(board)) {
+    let nextBoard = copyBoard(board)
     nextBoard[col].push(player)
-    const score = minimax(nextBoard, togglePlayer(player), !isMaxPlayer, depth - 1)
+    let score = minimax(nextBoard, togglePlayer(player), !isMaxPlayer, depth - 1, alpha, beta)
     bestScore = isMaxPlayer ? Math.max(bestScore, score) : Math.min(bestScore, score)
-  })
+
+    if (isMaxPlayer) {
+      alpha = Math.max(alpha, score)
+    } else {
+      beta = Math.min(beta, score)
+    }
+
+    if (beta <= alpha) {
+      break
+    }
+  }
 
   return bestScore
 }

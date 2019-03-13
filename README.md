@@ -1,6 +1,7 @@
 # Connect Four
 
 A React implementation of Connect Four.
+AI uses the minimax algorithm with alpha-beta pruning.
 
 Demo: http://jacobtwlee.github.io/connect-four-react
 
