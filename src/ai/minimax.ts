@@ -1,11 +1,11 @@
 import { Player } from '../model'
-import { copyBoard, isFullBoard, isWinningBoard, scoreBoard, togglePlayer, validBoardMoves } from '../utils'
+import { copyBoard, isFullBoard, isWinningBoard, scoreBoard, shuffle, togglePlayer, validBoardMoves } from '../utils'
 
 function nextMove(board: Player[][], player: Player): number {
   let bestScore = Number.MIN_SAFE_INTEGER
   let bestMove = 0
 
-  validBoardMoves(board).forEach(col => {
+  shuffle(validBoardMoves(board)).forEach(col => {
     const nextBoard = copyBoard(board)
     nextBoard[col].push(player)
 
@@ -34,7 +34,7 @@ function minimax(
 
   let bestScore = isMaxPlayer ? Number.MIN_SAFE_INTEGER : Number.MAX_SAFE_INTEGER
 
-  for (let col of validBoardMoves(board)) {
+  for (let col of shuffle(validBoardMoves(board))) {
     let nextBoard = copyBoard(board)
     nextBoard[col].push(player)
     let score = minimax(nextBoard, togglePlayer(player), !isMaxPlayer, depth - 1, alpha, beta)
