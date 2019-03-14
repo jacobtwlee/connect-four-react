@@ -3,9 +3,14 @@ import { BOARD_ROWS, BOARD_COLUMNS } from '../../constants'
 
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(${BOARD_COLUMNS}, 50px);
-  grid-template-rows: repeat(${BOARD_ROWS}, 50px);
+  grid-template-columns: repeat(${BOARD_COLUMNS}, 55px);
+  grid-template-rows: repeat(${BOARD_ROWS}, 55px);
   grid-gap: 8px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(${BOARD_COLUMNS}, 40px);
+    grid-template-rows: repeat(${BOARD_ROWS}, 40px);
+  }
 `
 
 export const BoardGridItem = styled.div<{ row: number, col: number }>`

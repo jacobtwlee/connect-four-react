@@ -3,16 +3,20 @@ import { PLAYER_COLORS, BOARD_COLUMNS } from '../../constants'
 
 export const Columns = styled.div`
   display: grid;
-  grid-template-columns: repeat(${BOARD_COLUMNS}, 50px);
-  grid-template-rows: 50px;
+  grid-template-columns: repeat(${BOARD_COLUMNS}, 55px);
+  grid-template-rows: 55px;
   grid-gap: 8px;
   margin-bottom: 8px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(${BOARD_COLUMNS}, 40px);
+    grid-template-rows: 40px;
+  }
 
   &:focus {
     outline: none;
   }
 `
-
 
 export const ActiveColumn = styled.button<{ playerColor: string }>`
   cursor: pointer;
